@@ -22,6 +22,7 @@ import java.util.Map;
 @Configuration
 @PropertySource(value = "classpath:/bidder-config/infytv.yaml", factory = YamlPropertySourceFactory.class)
 public class InfytvConfiguration {
+
     private static final String BIDDER_NAME = "infytv";
 
     @Bean("infytvConfigurationProperties")
@@ -32,8 +33,8 @@ public class InfytvConfiguration {
 
     @Bean
     BidderDeps infytvBidderDeps(BidderConfigurationProperties infytvConfigurationProperties,
-    @NotBlank @Value("${external-url}") String externalUrl,
-    JacksonMapper mapper) {
+                                @NotBlank @Value("${external-url}") String externalUrl,
+                                JacksonMapper mapper) {
 
         return BidderDepsAssembler.forBidder(BIDDER_NAME)
                 .withConfig(infytvConfigurationProperties)

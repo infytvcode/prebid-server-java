@@ -17,7 +17,6 @@ import org.prebid.server.exception.PreBidException;
 import org.prebid.server.json.DecodeException;
 import org.prebid.server.json.JacksonMapper;
 import org.prebid.server.proto.openrtb.ext.ExtPrebid;
-import org.prebid.server.proto.openrtb.ext.request.appnexus.ExtImpAppnexus;
 import org.prebid.server.proto.openrtb.ext.request.infytv.ExtImpInfytv;
 import org.prebid.server.proto.openrtb.ext.response.BidType;
 import org.prebid.server.util.HttpUtil;
@@ -29,7 +28,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class InfytvBidder implements Bidder<BidRequest>{
+public class InfytvBidder implements Bidder<BidRequest> {
+
     final String endpointUrl;
     private final JacksonMapper mapper;
 
@@ -46,9 +46,9 @@ public class InfytvBidder implements Bidder<BidRequest>{
     public Result<List<HttpRequest<BidRequest>>> makeHttpRequests(BidRequest request) {
         final List<HttpRequest<BidRequest>> httpRequests = new ArrayList<>();
         for (Imp imp : request.getImp()) {
-            ExtImpInfytv infyVars = ResolveImpExt(imp);
+            ExtImpInfytv infyVars = resolveImpExt(imp);
             final BidRequest outgoingRequest = request.toBuilder().imp(Collections.singletonList(imp)).build();
-            final String dspUrl = infyVars.getBase()+infyVars.getPath();
+            final String dspUrl = infyVars.getBase() + infyVars.getPath();
             httpRequests.add(HttpRequest.<BidRequest>builder()
                     .method(HttpMethod.POST)
                     .uri(dspUrl)
@@ -106,7 +106,7 @@ public class InfytvBidder implements Bidder<BidRequest>{
         return bidType;
     }
 
-    private ExtImpInfytv ResolveImpExt(Imp imp) {
+    private ExtImpInfytv resolveImpExt(Imp imp) {
         try {
             return mapper.mapper()
                     .convertValue(imp.getExt(), INFYTV_EXT_TYPE_REFERENCE)
