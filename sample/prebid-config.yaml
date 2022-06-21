@@ -1,11 +1,13 @@
 status-response: "ok"
 adapters:
-  rubicon:
+  infytv:
     enabled: true
-    XAPI.Username: user1
-    XAPI.Password: password1
+    modifying-vast-xml-allowed: true
 metrics:
   prefix: prebid
+  console:
+    enabled: false
+    interval: 300
 cache:
   scheme: http
   host: localhost
@@ -23,3 +25,8 @@ gdpr:
   vendorlist:
     v2:
       cache-dir: /var/tmp/vendor2
+analytics:
+  log:
+    enabled: true
+auction:
+  default-timeout-ms: 1600

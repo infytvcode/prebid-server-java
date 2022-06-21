@@ -117,3 +117,26 @@ and verify response status is `200 OK`.
 - [Code Style](docs/developers/code-style.md)
 - [Code Review](docs/developers/code-reviews.md)
 - [Versioning](docs/developers/versioning.md)
+
+
+## Docker build
+
+- To build run 
+```bash
+docker build -t infytv/infy:hb-latest .
+```
+
+- To push on docker hub run 
+```bash
+docker push infytv/infy:hb-latest
+```
+- To pull from docker hub run 
+```bash
+docker pull infytv/infy:hb-latest
+```
+
+- To run
+```bash
+docker run -d -p 8080:8080 \
+       infytv/infy:hb-latest
+```

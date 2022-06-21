@@ -1,4 +1,32 @@
+status-response: "ok"
+adapters:
+  infytv:
+    enabled: true
+    modifying-vast-xml-allowed: true
+metrics:
+  prefix: prebid
+  console:
+    enabled: false
+    interval: 300
+cache:
+  scheme: http
+  host: localhost
+  path: /cache
+  query: uuid=
+settings:
+  filesystem:
+    settings-filename: app-settings.yaml
+    stored-requests-dir:
+    stored-imps-dir:
+    stored-responses-dir:
+    categories-dir:
 gdpr:
+  default-value: 1
   vendorlist:
     v2:
       cache-dir: /app/prebid-server/data/vendorlist-v2
+analytics:
+  log:
+    enabled: true
+auction:
+  default-timeout-ms: 1600
